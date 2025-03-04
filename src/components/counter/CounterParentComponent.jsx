@@ -18,12 +18,14 @@ export default function CounterParentComponent(){
             
             <CounterButtonComponent byNumber={1} 
                 incrementMethodPassedFromParent={incrementCounterParentFunction}
+                
                 decrementMethodPassedFromParent={decrementCounterParentFunction}>
 
             </CounterButtonComponent>
 
             <CounterButtonComponent byNumber={5} 
                 incrementMethodPassedFromParent={incrementCounterParentFunction}
+                
                 decrementMethodPassedFromParent={decrementCounterParentFunction}>
 
             </CounterButtonComponent>

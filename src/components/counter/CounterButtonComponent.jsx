@@ -5,7 +5,11 @@ import './Counter.css';
 
 // here "byNumber" is a Properties "Argument"
 // "incrementMethodPassedFromParent" & "decrementMethodPassedFromParent" are Passed From Parent
-export default function CounterButtonComponent({byNumber, incrementMethodPassedFromParent, decrementMethodPassedFromParent}){
+export default function CounterButtonComponent(
+  
+  {byNumber, incrementMethodPassedFromParent, decrementMethodPassedFromParent}
+
+){
 
     console.log("byNumber:" + byNumber);
     
