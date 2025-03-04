@@ -6,9 +6,11 @@ import './TodoApp.css'
 export default function TodoApp(){
     return (
       <div className="TodoApp">
-        <HeaderComponent/>
 
         <BrowserRouter>
+            {/* we have to put `HeaderComponent` in `BrowserRouter` otherwise we won't be able to Access `Link` in FooterComponent */}
+            <HeaderComponent/>
+
             <Routes>
                 <Route path='/' element={ <LoginComponent/> }></Route>
                 
@@ -25,9 +27,10 @@ export default function TodoApp(){
 
             </Routes>
             
-        </BrowserRouter>
+            {/* we have to put `FooterComponent` in `BrowserRouter` otherwise we won't be able to Access `Link` in FooterComponent */}
+            <FooterComponent/>
 
-        <FooterComponent/>
+        </BrowserRouter>
       </div>
     )
 }
@@ -196,17 +199,29 @@ function ListTodosComponent(){
 
 function HeaderComponent(){
     return (
-      <div className="header">
-        Header <hr/>
-      </div>
-    )
+            <header>
+                <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+                    <div><Link to="/" className="navbar-brand">Real Madrid</Link></div>
+
+                    <ul className="navbar-nav">
+                        <li><Link className="nav-link" to="/">Home</Link></li>
+                        <li><Link className="nav-link" to="/todos">Todos</Link></li>
+                    </ul>
+                    
+                    <ul className="navbar-nav navbar-collapse justify-content-end">
+                        <li><Link className="nav-link" to="/login">Login</Link></li>
+                        <li><Link className="nav-link" to="/logout">Logout</Link></li>
+                    </ul>
+                </nav>
+            </header>
+        )
 }
 
 function FooterComponent(){
     return (
-      <div className="footer">
-        <hr/> Footer
-      </div>
+        <footer className="footer">
+            <span className="text-muted">All Rights Reserved @AkashPodder</span>
+        </footer>
     )
 }
 

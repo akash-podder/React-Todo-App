@@ -6,6 +6,7 @@ import './Counter.css';
 // here "byNumber" is a Properties "Argument"
 // "incrementMethodPassedFromParent" & "decrementMethodPassedFromParent" are Passed From Parent
 export default function CounterButtonComponent({byNumber, incrementMethodPassedFromParent, decrementMethodPassedFromParent}){
+
     console.log("byNumber:" + byNumber);
     
     // 2 ways to add CSS... 1st way is like this way... this is called "in-line" CSS, eikane Property gula "font-size" hoye jabe "fontSize"... because amra "JSX" file ee achi... also use Double Qoutes --> "" --> For Values "100px"
@@ -52,7 +53,7 @@ export default function CounterButtonComponent({byNumber, incrementMethodPassedF
 
       </div>
     )
-  }
+}
 
 // Giving "Type" Constraints for our "Properties"
 CounterButtonComponent.propTypes = {
