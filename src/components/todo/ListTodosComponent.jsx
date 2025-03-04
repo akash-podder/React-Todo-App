@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { retrieveAllTodosForUsername } from "./api/TodoApiService";
+import { retrieveAllTodosForUsernameApiCall, deleteTodoApiCall } from "./api/TodoApiService";
 
 export default function ListTodosComponent(){
     const today = new Date();
@@ -19,7 +19,7 @@ export default function ListTodosComponent(){
     )
 
     function refreshTodos() {
-        retrieveAllTodosForUsername('in28minutes')
+        retrieveAllTodosForUsernameApiCall('in28minutes')
             .then(response => {
                 console.log(response.data)
                 setTodos(response.data)
@@ -27,9 +27,26 @@ export default function ListTodosComponent(){
             .catch(error => console.log(error))
     }
 
+    const [message, setMessage] = useState(null)
+
+    function deleteTodo(id) {
+        console.log("Delete ID: " + id)
+        deleteTodoApiCall('in28minutes', id)
+            .then(
+                () => {
+                    setMessage(`Delete of todo with ID: ${id} successful`)
+                    refreshTodos()
+                }
+            )
+            .catch(error => console.log(error))
+    }
+
     return (
       <div className="container">
         <h1>Things You Want to Do!</h1>
+        
+        { message && <div className="alert alert-warning">{message}</div> }
+        
         <div>
             <table className="table">
                 <thead>
@@ -38,6 +55,7 @@ export default function ListTodosComponent(){
                         <td>Description</td>
                         <td>is Done?</td>
                         <td>Target Date</td>
+                        <td>Delete</td>
                     </tr>
                 </thead>
 
@@ -51,6 +69,8 @@ export default function ListTodosComponent(){
                                     <td>{todo.done.toString()}</td>
                                     {/* <td>{todo.targetDate.toDateString()}</td> */}
                                     <td>{todo.targetDate.toString()}</td>
+                                    
+                                    <td><button className="btn-btn-warning" onClick={() => deleteTodo(todo.id)}>Delete</button></td>
                                 </tr>
                             )
                         )
