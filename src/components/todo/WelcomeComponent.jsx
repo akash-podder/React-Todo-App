@@ -1,19 +1,38 @@
 import { useParams, Link } from 'react-router-dom';
 
-import axios from 'axios';
+import { useState } from 'react';
+import { doApiCallHelloWorldBean, doApiCallHelloWorldPathVariable } from './api/HelloWorldApiService';
 
 export default function WelcomeComponent(){
     // this is to get "username" from "URL" parameter
     const params = useParams() // 1st Way
     const {username} = useParams() // 2nd Way
 
+    const [message, setMessage] = useState(null)
+
     console.log(params)
 
     function callHelloWorldRestApi(){
-      axios.get('http://localhost:8080/hello-world')
-        .then((response) => console.log(response))
-        .catch((error) => console.log(error))
-        .finally(() => console.log('Clean Up'))
+      
+        // doApiCallHelloWorldBean()
+        //   .then((response) => successfulResponse(response))
+        //   .catch((error) => errorResponse(error))
+        //   .finally(() => console.log('Clean Up'))
+
+        doApiCallHelloWorldPathVariable('Ramos')
+          .then((response) => successfulResponse(response))
+          .catch((error) => errorResponse(error))
+          .finally(() => console.log('Clean Up'))
+    }
+
+    function successfulResponse(response){
+        console.log(response)
+        setMessage(response.data.message)
+    }
+
+    function errorResponse(response){
+        console.log(response)
+        setMessage(response.data.message)
     }
 
     return (
@@ -28,8 +47,12 @@ export default function WelcomeComponent(){
             Manage your todos - <Link to='/todos'>Go Here</Link>
         </div>
 
-        <button className="btn-btn-success m-5" onClick={callHelloWorldRestApi}>Call Rest Api</button>
-        
+        <div>
+          <button className="btn-btn-success m-5" onClick={callHelloWorldRestApi}>Call Rest Api</button>
+        </div>
+
+        <div className="text-info">{message}</div>
+
       </div>
       
     )
