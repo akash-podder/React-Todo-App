@@ -35,20 +35,16 @@ export default function LoginComponent(){
 
     // Submit Button Mechanism
     function handleSubmit(){
-        if(username==='in28minutes' && password==='dummy'){ 
-            authContext.setAuthenticated(true)
+        if(authContext.verifyLogin(username, password)){ 
+            console.log('Login Success')
 
-            console.log('Success')
-            
             setShowSuccessMesasge(true)
             setShowErrorMesasge(false)
             navigate(`/welcome/${username}`)
         }
         else{
-            authContext.setAuthenticated(false)
-
-            console.log('Failed')
-
+            console.log('Login Failed')
+            
             setShowSuccessMesasge(false)
             setShowErrorMesasge(true)
         }
