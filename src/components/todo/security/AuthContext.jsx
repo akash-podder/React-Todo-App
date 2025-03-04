@@ -9,14 +9,18 @@ export default function AuthProvider({children}){
 
     // 3. Put some "State" in the Context
     const [isAuthenticated, setAuthenticated] = useState(false)
+
+    const [username, setUsername] = useState(null)
     
     function verifyLogin(username, password){
         if(username==='in28minutes' && password==='dummy'){ 
             setAuthenticated(true)
+            setUsername(username)
             return true
         }
         else{
             setAuthenticated(false)
+            setUsername(null)
             return false
         }
     }
@@ -25,7 +29,7 @@ export default function AuthProvider({children}){
         setAuthenticated(false)
     }
 
-    const valueToBeShared = {isAuthenticated, verifyLogin, doLogout} // this is Creating an "Object" in JavaScript... there is Nothing called "new" Keyword to Create an "Object"
+    const valueToBeShared = {isAuthenticated, username, verifyLogin, doLogout} // this is Creating an "Object" in JavaScript... there is Nothing called "new" Keyword to Create an "Object"
 
     return (
         <AuthContext.Provider value={valueToBeShared}>
