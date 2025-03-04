@@ -2,10 +2,15 @@ import {useState} from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { useAuth } from './security/AuthContext';
+
 
 export default function LoginComponent(){
     // navigate between URLs
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
+    // to Handle Authentication Stuffs
+    const authContext = useAuth()
 
     // Username: `Controller Component` --> "React State" & "onChange" Handler
     const [username, setUsername] = useState('in28minutes')
@@ -30,14 +35,20 @@ export default function LoginComponent(){
 
     // Submit Button Mechanism
     function handleSubmit(){
-        if(username==='in28minutes' && password==='dummy'){
+        if(username==='in28minutes' && password==='dummy'){ 
+            authContext.setAuthenticated(true)
+
             console.log('Success')
+            
             setShowSuccessMesasge(true)
             setShowErrorMesasge(false)
             navigate(`/welcome/${username}`)
         }
         else{
+            authContext.setAuthenticated(false)
+
             console.log('Failed')
+
             setShowSuccessMesasge(false)
             setShowErrorMesasge(true)
         }
