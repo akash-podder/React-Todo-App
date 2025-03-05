@@ -34,8 +34,8 @@ export default function LoginComponent(){
     const [showErrorMesasge, setShowErrorMesasge] = useState(false)
 
     // Submit Button Mechanism
-    function handleSubmit(){
-        if(authContext.verifyLogin(username, password)){ 
+    async function handleSubmit(){
+        if(await authContext.verifyLogin(username, password)){ 
             console.log('Login Success')
 
             setShowSuccessMesasge(true)

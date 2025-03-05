@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { doApiCallHelloWorldBean, doApiCallHelloWorldPathVariable } from './api/HelloWorldApiService';
 
+import { useAuth } from './security/AuthContext';
+
 export default function WelcomeComponent(){
     // this is to get "username" from "URL" parameter
     const params = useParams() // 1st Way
@@ -13,6 +15,9 @@ export default function WelcomeComponent(){
 
     console.log(params)
 
+    const authContext = useAuth()
+    const token = authContext.token
+
     function callHelloWorldRestApi(){
       
         // doApiCallHelloWorldBean()
@@ -20,7 +25,7 @@ export default function WelcomeComponent(){
         //   .catch((error) => errorResponse(error))
         //   .finally(() => console.log('Clean Up'))
 
-        doApiCallHelloWorldPathVariable('Ramos')
+        doApiCallHelloWorldPathVariable('Ramos', token)
           .then((response) => successfulResponse(response))
           .catch((error) => errorResponse(error))
           .finally(() => console.log('Clean Up'))
