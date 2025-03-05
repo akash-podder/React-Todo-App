@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import {PropTypes} from 'prop-types';
 import './css/TodoApp.css'
+
+import {PropTypes} from 'prop-types';
 
 import WelcomeComponent from './WelcomeComponent';
 import LoginComponent from './LoginComponent';

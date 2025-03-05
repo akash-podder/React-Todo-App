@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import { useAuth } from './security/AuthContext';
 
-import { retrieveTodoApiCall } from "./api/TodoApiService"
+import { retrieveTodoApiCall, updateTodoApiCall } from "./api/TodoApiService"
 
 // to handle "Form Data" we use "formit" 3rd Party Library
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -14,6 +14,8 @@ export default function TodoDetailsComponent(){
     const authContext = useAuth()
     const username = authContext.username
     
+    const navigate = useNavigate()
+
     const[description, setDescription] = useState('')
     const[targetDate, setTargetDate] = useState('')
 
@@ -36,6 +38,22 @@ export default function TodoDetailsComponent(){
 
     function onSubmitClick(values){
       console.log(values)
+      const todo = {
+        id: id,
+        username: username,
+        description: values.description,
+        targetDate: values.targetDate,
+        done:false
+      }
+
+      updateTodoApiCall(username, id, todo)
+            .then(
+              (response) => {
+                  console.log(response)
+                  navigate('/todos')
+              }
+          )
+          .catch(error => console.log(error))
     }
 
     function myValidationFunction(values){
@@ -61,7 +79,7 @@ export default function TodoDetailsComponent(){
       <div className="TodoDetailsComponent">
         <h1>Todo Details</h1>
         <div>
-            Description: {description}
+
             <Formik initialValues={ {description, targetDate} }
               enableReinitialize = {true}
               onSubmit={onSubmitClick}
