@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { apiClient } from "../api/ApiClient"
 
-import { executeBasicAuthenticationService } from '../api/AuthenticationApiService'
+import { executeBasicAuthenticationService, executeJwtAuthenticationService } from '../api/AuthenticationApiService'
 
 // 1. Create a Context & "export" it to the other Components
 const AuthContext = createContext()
@@ -53,13 +53,47 @@ export default function AuthProvider({children}){
         }
     }
 
+    async function verifyJwtLogin(username, password){
+        
+        try{
+            const response = await executeJwtAuthenticationService(username, password)
+            
+            if(response.status==200){ 
+                const jwtToken = 'Bearer ' + response.data.token
+                
+                setAuthenticated(true)
+                setUsername(username)
+                setToken(jwtToken)
+                
+                // setting "basicAuthToken" to GLOBAL "apiClient"
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('intercepting and adding a token')
+                        config.headers.Authorization=jwtToken
+                        return config
+                    }
+                )
+
+                return true
+            }
+            else{
+                doLogout()
+                return false
+            }
+        }
+        catch(error){
+            doLogout()
+            return false
+        }
+    }
+
     function doLogout(){
         setAuthenticated(false)
         setUsername(null)
         setToken(null)
     }
 
-    const valueToBeShared = {isAuthenticated, username, token, verifyLogin, doLogout} // this is Creating an "Object" in JavaScript... there is Nothing called "new" Keyword to Create an "Object"
+    const valueToBeShared = {isAuthenticated, username, token, verifyLogin, verifyJwtLogin, doLogout} // this is Creating an "Object" in JavaScript... there is Nothing called "new" Keyword to Create an "Object"
 
     return (
         <AuthContext.Provider value={valueToBeShared}>

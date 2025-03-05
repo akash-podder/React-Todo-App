@@ -35,7 +35,7 @@ export default function LoginComponent(){
 
     // Submit Button Mechanism
     async function handleSubmit(){
-        if(await authContext.verifyLogin(username, password)){ 
+        if(await authContext.verifyJwtLogin(username, password)){ 
             console.log('Login Success')
 
             setShowSuccessMesasge(true)
