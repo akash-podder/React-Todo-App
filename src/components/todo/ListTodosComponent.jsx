@@ -1,10 +1,15 @@
 import { useState, useEffect } from 'react';
-import { retrieveAllTodosForUsernameApiCall, deleteTodoApiCall } from "./api/TodoApiService";
+import { useNavigate } from 'react-router-dom';
+
 import { useAuth } from './security/AuthContext';
+
+import { retrieveAllTodosForUsernameApiCall, deleteTodoApiCall } from "./api/TodoApiService";
 
 export default function ListTodosComponent(){
     const authContext = useAuth()
     const username = authContext.username
+
+    const navigate = useNavigate()
 
     const today = new Date();
     const targetDate = new Date(today.getFullYear()+12, today.getMonth(), today.getDay())
@@ -45,6 +50,11 @@ export default function ListTodosComponent(){
             .catch(error => console.log(error))
     }
 
+    function updateTodo(id) {
+        console.log("Update ID: " + id)
+        navigate(`/todo/${id}`)
+    }
+
     return (
       <div className="container">
         <h1>Things You Want to Do!</h1>
@@ -60,6 +70,7 @@ export default function ListTodosComponent(){
                         <td>is Done?</td>
                         <td>Target Date</td>
                         <td>Delete</td>
+                        <td>Update</td>
                     </tr>
                 </thead>
 
@@ -75,6 +86,8 @@ export default function ListTodosComponent(){
                                     <td>{todo.targetDate.toString()}</td>
                                     
                                     <td><button className="btn-btn-warning" onClick={() => deleteTodo(todo.id)}>Delete</button></td>
+
+                                    <td><button className="btn-btn-warning" onClick={() => updateTodo(todo.id)}>Update</button></td>
                                 </tr>
                             )
                         )
