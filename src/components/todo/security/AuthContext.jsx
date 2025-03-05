@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import { apiClient } from "../api/ApiClient"
 
-import { executeBasicAuthenticationService } from '../api/HelloWorldApiService'
+import { executeBasicAuthenticationService } from '../api/AuthenticationApiService'
 
 // 1. Create a Context & "export" it to the other Components
 const AuthContext = createContext()
