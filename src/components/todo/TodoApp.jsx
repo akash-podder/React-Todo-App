@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './css/TodoApp.css'
 
 import {PropTypes} from 'prop-types';
 
 import WelcomeComponent from './WelcomeComponent';
+import HomeComponent from './HomeComponent';
 import LoginComponent from './LoginComponent';
 import LogoutComponent from './LogoutComponent';
 import ListTodosComponent from './ListTodosComponent';
@@ -13,20 +14,7 @@ import FooterComponent from './FooterComponent';
 import ErrorComponent from './ErrorComponent';
 import TodoComponent from './TodoDetailsComponent';
 
-
-import AuthProvider, { useAuth } from './security/AuthContext';
-
-
-function AuthenticatedRoute({children}){
-    const authContext = useAuth()
-
-    if(authContext.isAuthenticated){
-        return children
-    }
-    else{
-        return <Navigate to="/" />
-    }
-}
+import AuthProvider, { AuthenticatedRoute } from './security/AuthContext';
 
 export default function TodoApp(){
     return (
@@ -39,7 +27,7 @@ export default function TodoApp(){
                 <HeaderComponent/>
 
                 <Routes>
-                    <Route path='/' element={ <LoginComponent/> }></Route>
+                    <Route path='/' element={ <HomeComponent/> }></Route>
                     
                     <Route path='/login' element={ <LoginComponent/> }></Route>
                     

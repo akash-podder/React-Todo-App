@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { apiClient } from "../api/ApiClient"
 
@@ -65,4 +66,23 @@ export default function AuthProvider({children}){
             {children}
         </AuthContext.Provider>
     )
+}
+
+
+// this Route will WRAP All the Components that should be Routed to "/login" page if Not Logged In
+export function AuthenticatedRoute({children}){
+    
+    const authContext = useAuth()
+    const location = useLocation(); // Get the current "URL-route"
+
+    // If user is authenticated and trying to access "/login", redirect to "/" URL
+    if (authContext.isAuthenticated && location.pathname === "/login") {
+        return <Navigate to="/" />;
+    }
+    else if(authContext.isAuthenticated){
+        return children
+    }
+    else{
+        return <Navigate to="/login" />
+    }
 }
