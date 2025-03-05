@@ -55,6 +55,10 @@ export default function ListTodosComponent(){
         navigate(`/todo/${id}`)
     }
 
+    function addNewTodo() {
+        navigate(`/todo/-1`)
+    }
+
     return (
       <div className="container">
         <h1>Things You Want to Do!</h1>
@@ -85,9 +89,9 @@ export default function ListTodosComponent(){
                                     {/* <td>{todo.targetDate.toDateString()}</td> */}
                                     <td>{todo.targetDate.toString()}</td>
                                     
-                                    <td><button className="btn-btn-warning" onClick={() => deleteTodo(todo.id)}>Delete</button></td>
+                                    <td><button className="btn btn-warning" onClick={() => deleteTodo(todo.id)}>Delete</button></td>
 
-                                    <td><button className="btn-btn-warning" onClick={() => updateTodo(todo.id)}>Update</button></td>
+                                    <td><button className="btn btn-warning" onClick={() => updateTodo(todo.id)}>Update</button></td>
                                 </tr>
                             )
                         )
@@ -95,6 +99,7 @@ export default function ListTodosComponent(){
                 </tbody>
             </table>
         </div>
+        <div className="btn btn-success m-5" onClick={addNewTodo}>Add New Todo</div>
       </div>
     )
 }

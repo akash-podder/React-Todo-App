@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { useAuth } from './security/AuthContext';
 
-import { retrieveTodoApiCall, updateTodoApiCall } from "./api/TodoApiService"
+import { retrieveTodoApiCall, updateTodoApiCall, createTodoApiCall } from "./api/TodoApiService"
 
 // to handle "Form Data" we use "formit" 3rd Party Library
 import { Formik, Form, Field, ErrorMessage } from 'formik';
@@ -26,14 +26,16 @@ export default function TodoDetailsComponent(){
     )
 
     function retrieveTodo() {
-      retrieveTodoApiCall(username, id)
-            .then(
-                (response) => {
-                    setDescription(response.data.description)
-                    setTargetDate(response.data.targetDate)
-                }
-            )
-            .catch(error => console.log(error))
+      if(id!=-1){
+        retrieveTodoApiCall(username, id)
+              .then(
+                  (response) => {
+                      setDescription(response.data.description)
+                      setTargetDate(response.data.targetDate)
+                  }
+              )
+              .catch(error => console.log(error))
+        }
     }
 
     function onSubmitClick(values){
@@ -46,14 +48,26 @@ export default function TodoDetailsComponent(){
         done:false
       }
 
-      updateTodoApiCall(username, id, todo)
-            .then(
-              (response) => {
-                  console.log(response)
-                  navigate('/todos')
-              }
-          )
-          .catch(error => console.log(error))
+      if(id==-1){
+        createTodoApiCall(username, todo)
+              .then(
+                (response) => {
+                    console.log(response)
+                    navigate('/todos')
+                }
+            )
+            .catch(error => console.log(error))
+      }
+      else{
+        updateTodoApiCall(username, id, todo)
+              .then(
+                (response) => {
+                    console.log(response)
+                    navigate('/todos')
+                }
+            )
+            .catch(error => console.log(error))
+        }
     }
 
     function myValidationFunction(values){
@@ -66,7 +80,7 @@ export default function TodoDetailsComponent(){
         errors.description = 'Enter atleast 5 characters'
       }
 
-      if(values.targetDate==null){
+      if(values.targetDate==null || values.targetDate==''){
         errors.description = 'Enter a Target Date'
       }
 
