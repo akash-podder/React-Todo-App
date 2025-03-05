@@ -6,7 +6,7 @@ import { useAuth } from './security/AuthContext';
 import { retrieveTodoApiCall } from "./api/TodoApiService"
 
 // to handle "Form Data" we use "formit" 3rd Party Library
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 export default function TodoDetailsComponent(){
     
@@ -37,6 +37,25 @@ export default function TodoDetailsComponent(){
     function onSubmitClick(values){
       console.log(values)
     }
+
+    function myValidationFunction(values){
+      let errors = {
+          // description: 'Enter a valid description',
+          // targetDate: 'Enter a valid Target Date'
+      }
+
+      if(values.description.length<5){
+        errors.description = 'Enter atleast 5 characters'
+      }
+
+      if(values.targetDate==null){
+        errors.description = 'Enter a Target Date'
+      }
+
+      console.log(values)
+
+      return errors
+    }
         
     return (
       <div className="TodoDetailsComponent">
@@ -46,10 +65,26 @@ export default function TodoDetailsComponent(){
             <Formik initialValues={ {description, targetDate} }
               enableReinitialize = {true}
               onSubmit={onSubmitClick}
+              validate={myValidationFunction}
+              validateOnChange = {false}
+              validateOnBlur = {false}
             >
                 {
                   (props) => (
                     <Form>
+
+                        <ErrorMessage
+                          name="description"
+                          component="div"
+                          className="alert alert-warning"
+                        />
+
+                        <ErrorMessage
+                          name="targetDate"
+                          component="div"
+                          className="alert alert-warning"
+                        />
+
                         <fieldset className="form-group">
                           <label>Description</label>
                           <Field type="text" className="form-control" name="description"/>
