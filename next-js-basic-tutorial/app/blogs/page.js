@@ -34,7 +34,9 @@ export default function Blogs() {
           );
 
         })}
+
       </ul>
+      
     </main>
   );
 }
