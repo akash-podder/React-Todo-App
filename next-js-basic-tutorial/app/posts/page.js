@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from "next/link";
-import getAllPosts from '@/lib/getAllPosts'
+import getAllPosts from '@/api/getAllPosts'
 
 export default async function Posts() {
 

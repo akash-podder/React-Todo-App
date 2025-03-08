@@ -21,7 +21,7 @@ export default function Blogs() {
 
   return (
     <main className="mt-10">
-      <div className="mb-11">Blogs</div>
+      <div className="mb-11">All Blogs</div>
 
       <ul>
         {blogs.map((blog) => {
@@ -36,7 +36,7 @@ export default function Blogs() {
         })}
 
       </ul>
-      
+
     </main>
   );
 }

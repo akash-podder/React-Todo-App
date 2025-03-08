@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
-import getPost from '@/lib/getPost'
-import getPostComments from "@/lib/getPostComments";
+import getPost from '@/api/getPost'
+import getPostComments from "@/api/getPostComments";
 import Comments from "@/app/components/Comments";
 import { Suspense } from "react";
+import getAllPosts from "@/api/getAllPosts";
 
 // this "generateMetadata" Function is for Generating "Dynamic Metadata"
 export async function generateMetadata({params}) {
@@ -45,4 +46,12 @@ export default async function Post({params}) {
 
       </div>
     )
+}
+
+export async function generateStaticParams() {
+  const posts = await getAllPosts();
+
+  return posts.map(post=>({
+    id: post.id.toString()
+  })) 
 }
