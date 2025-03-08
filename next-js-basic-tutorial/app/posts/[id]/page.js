@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
 import getPost from '@/lib/getPost'
+import getPostComments from "@/lib/getPostComments";
+import Comments from "@/app/components/Comments";
+import { Suspense } from "react";
 
 // this "generateMetadata" Function is for Generating "Dynamic Metadata"
 export async function generateMetadata({params}) {
@@ -21,14 +24,25 @@ export default async function Post({params}) {
     notFound()
   }
 
-  const post = await getPost(id);
-  console.log(post)
+  const postPromise = getPost(id);
+  const commentsPromise = getPostComments(id);
+
+  const post = await postPromise
+  
+  // const [post, comments] = await Promise.all([postPromise, commentsPromise]);
 
     return (
       <div className="mt-6">
         <h1 className="text-blue-500">Title: {post.title}</h1>
         
         <div className="mt-11">Description: {post.body}</div>
+        
+        <hr/>
+
+        <Suspense fallback="<h1>Loading Comments...</h1>">
+          <Comments commentsPromise={commentsPromise}/>
+        </Suspense>
+
       </div>
     )
 }
