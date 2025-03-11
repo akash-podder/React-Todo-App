@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This is index</title>
+</head>
+<body>
+    <div class="container">
+        This is public/index container
+        When a client requests /, Express first checks if there is a static file matching the request. If public/index.html exists, it is served automatically before the app.get('/') handler is reached. This happens because express.static() is middleware, and middleware is executed in the order it is defined.
+    </div>
+</body>
+</html>
