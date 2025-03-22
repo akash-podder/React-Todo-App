@@ -38,7 +38,7 @@ export default function GetPromptComponent() {
       <div className="GetPromptComponent">
 
           {promptTemplates.map((section, index) => (
-              <div key={index} className="prompt-section">
+              <div key={index}>
                   <h2>{section.category}</h2>
                   
                   {section.prompts.map((prompt, idx) => (

@@ -57,7 +57,7 @@ export default function GeneratePromptComponent() {
     }
 
     return (
-        <div className="Welcome">
+        <div className="prompt-card">
             <h1>Welcome to Chatgpt Prompt Generator</h1>
 
             {/* Main Prompt Input */}
