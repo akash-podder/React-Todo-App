@@ -1,7 +1,9 @@
 import { useState } from "react";
+import './css/MyCustom.css';
 
-export default function WelcomeComponent() {
+export default function GeneratePromptComponent() {
     const [prompt, setPrompt] = useState("Can you list [number] ways to [achieve specific goal]? Please include a short description for each.");
+    
     const [fields, setFields] = useState([]);
     const [finalText, setFinalText] = useState("");
     const [copySuccess, setCopySuccess] = useState(false);
@@ -9,18 +11,21 @@ export default function WelcomeComponent() {
     // Handle input change for the main prompt
     function handlePromptChange(event) {
         setPrompt(event.target.value);
+
+        // Reset the Values of "Copy" & "FinalText" to Initial before Resubmitting
+        setCopySuccess(false);
+        setFinalText("");
     }
 
     // Extract placeholders and create input fields
     function handleSubmit() {
         const matches = prompt.match(/\[([^\]]+)\]/g) || [];
-        const extractedFields = matches.map((match) => ({
-            label: match.replace(/\[|\]/g, ""), // Remove brackets
+        const extractedFields = matches.map((myStr) => ({
+            label: myStr.replace(/\[|\]/g, ""), // Remove brackets
             value: "",
         }));
 
         setFields(extractedFields);
-        setFinalText(""); // Reset final text when resubmitting
     }
 
     // Update input field values dynamically
@@ -28,6 +33,10 @@ export default function WelcomeComponent() {
         const newFields = [...fields];
         newFields[index].value = event.target.value;
         setFields(newFields);
+
+        // Reset the Values of "Copy" & "FinalText" to Initial before Resubmitting
+        setCopySuccess(false);
+        setFinalText("");
     }
 
     // Replace placeholders in prompt with user inputs

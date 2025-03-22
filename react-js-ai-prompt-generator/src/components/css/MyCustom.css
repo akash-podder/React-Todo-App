@@ -1,0 +1,181 @@
+/* General Page Styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;  /* Align content to the top */
+    min-height: 100vh;
+    overflow-y: auto;  /* Allow scrolling */
+}
+
+/* Main Container */
+.Welcome {
+    width: 450px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px 0;  /* Add margin to prevent content from sticking to top */
+}
+
+/* Ensure Final Text Box is Scrollable */
+p {
+    background: #eef5ff;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+    word-wrap: break-word;
+    max-height: 300px; /* Set a max height */
+    overflow-y: auto;  /* Enable scrolling inside the text box */
+}
+
+/* Headings */
+h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #4A90E2;
+    margin-top: 30px;
+    border-bottom: 2px solid #4A90E2;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Labels */
+label {
+    display: block;
+    font-weight: 600;
+    margin: 12px 0 5px;
+    color: #444;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: #4A90E2;
+    box-shadow: 0px 0px 8px rgba(74, 144, 226, 0.3);
+    outline: none;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    background: #4A90E2;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-weight: 600;
+}
+
+button:hover {
+    background: #357ABD;
+}
+
+/* Success Message */
+span {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #28a745;
+    font-weight: 600;
+}
+
+/* Final Output Styling */
+p {
+    background: #eef5ff;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+/* Scrollable Container for Large Text */
+.scrollable-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Smooth Scrolling to Top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4A90E2;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.scroll-to-top:hover {
+    background: #357ABD;
+}
+
+/* Prompt Card Styling */
+.prompt-card {
+    background: #eef5ff;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    margin-top: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.prompt-card p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .Welcome {
+        width: 90%;
+        padding: 20px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
