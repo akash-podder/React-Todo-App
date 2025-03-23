@@ -3,7 +3,7 @@ export default function ErrorComponent(){
       <div className="ErrorComponent">
         <h1>Error Component</h1>
         <div>
-            Apologies for the Delay
+          <p>Sorry, the page you are looking for does not exist.</p>
         </div>
       </div>
     )

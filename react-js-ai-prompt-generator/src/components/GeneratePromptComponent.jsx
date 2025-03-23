@@ -63,7 +63,7 @@ export default function GeneratePromptComponent() {
             {/* Main Prompt Input */}
             <div>
                 <label>Prompt:</label>
-                <input type="text" value={prompt} onChange={handlePromptChange} />
+                <textarea type="text" value={prompt} onChange={handlePromptChange} />
             </div>
 
             {/* Generate Input Fields */}
@@ -74,11 +74,11 @@ export default function GeneratePromptComponent() {
             {/* Dynamic Input Fields */}
             {fields.length > 0 && (
                 <div>
-                    <h2>Fill in the details:</h2>
+                    <h2 className="mt-4">Fill in the details:</h2>
                     {fields.map((field, index) => (
                         <div key={index}>
                             <label>{field.label}:</label>
-                            <input
+                            <textarea
                                 type="text"
                                 value={field.value}
                                 onChange={(e) => handleFieldChange(index, e)}
@@ -95,7 +95,7 @@ export default function GeneratePromptComponent() {
             {/* Final Output */}
             {finalText && (
                 <div>
-                    <h2>Final Text:</h2>
+                    <h2 className="mt-4">Final Text:</h2>
                     <p>{finalText}</p>
                     <button type="button" onClick={handleCopyText}>Copy to Clipboard</button>
                     {copySuccess && <span style={{ color: "green", marginLeft: "10px" }}>Copied!</span>}
