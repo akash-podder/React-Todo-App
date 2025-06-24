@@ -1,0 +1,48 @@
+.card{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	margin: 0.5rem auto;
+	padding: 0.5rem 0.75rem;
+	box-sizing: border-box;
+	position: relative;
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+}
+
+/*.card:first-child{
+	margin-top: 0;
+}*/
+
+
+.card > div > button{
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.todo-info{
+	width: 85%;
+}
+
+.edit-delete{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	width: 15%;
+	float: right;
+}
+
+.icon{
+	width: 2rem;
+	height: 2rem;
+	background: transparent;
+	border: none;
+	color: black;
+	cursor: pointer;
+}

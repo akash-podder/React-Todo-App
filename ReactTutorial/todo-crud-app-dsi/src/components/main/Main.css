@@ -1,0 +1,13 @@
+.main{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+@media (min-width: 892px) {
+	.main{
+		display: flex;
+		flex-direction: row-reverse;
+		flex-wrap: wrap;
+	}
+}
