@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Canva (হরে রাম)</title>
+    <link rel="icon" type="image/png" href="img/Dhoom2-Akash.jpg" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Header with Hindi Text -->
+    <div id="header">
+        <button id="prevPageBtn" class="toolBtn" title="Previous Page">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2>Canva</h2>
+        <button id="nextPageBtn" class="toolBtn" title="Next Page">
+            <i class="fas fa-arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar with drawing tools -->
+    <!--<div class="logo">
+        <img src="img/Dhoom2-Akash.jpg" alt="Akash">
+    </div> -->
+    <div id="sidebar">
+        <button id="penBtn" class="toolBtn" title="Pen">
+            <i class="fas fa-pen"></i>
+        </button>
+        <button id="eraserBtn" class="toolBtn" title="Eraser">
+            <i class="fas fa-eraser"></i>
+        </button>
+        <button id="highlightBtn" class="toolBtn" title="Highlighter">
+            <i class="fas fa-highlighter"></i>
+        </button>
+
+        <!-- Color buttons -->
+        <div class="colorButtons">
+            <button id="colorGreen" class="colorBtn" style="background-color: #39FF14;" title="Green"></button>
+            <button id="colorRed" class="colorBtn" style="background-color: red;" title="Red"></button>
+            <button id="colorBlue" class="colorBtn" style="background-color: rgb(60, 151, 204);" title="Blue"></button>
+            <button id="colorWhite" class="colorBtn" style="background-color: white;" title="White"></button>
+        </div>
+
+        <div class="bottomTools">
+            <div class="brush">
+                <input type="range" id="brushSize" class="brushSize" min="1" max="50" value="5" title="Brush Size">
+            </div>
+            <div class="sidebar-buttons">
+                <button id="clearBtn" class="toolBtn" title="Clear Board">
+                    <i class="fas fa-trash"></i>
+                </button>
+                <button id="saveBtn" class="toolBtn" title="Save Page">
+                    <i class="fas fa-save"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Canvas area for drawing -->
+    <div id="canvasContainer">
+        <canvas id="drawingCanvas"></canvas>
+        <div id="slideNumber"></div>
+    </div>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
