@@ -27,3 +27,5 @@ yarn-error.log*
 
 # ignoring all Java Bytecode ".class" Files
 *.class
+# Maven target directory
+backend-spring-boot-code/target/
