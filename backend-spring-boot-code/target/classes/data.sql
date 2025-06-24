@@ -1,3 +1,0 @@
-insert into todo (id, description, done, target_date, username) values (10001, 'Hala Madrid!!! Learn Spanish', false, CURRENT_DATE(), 'in28minutes');
-insert into todo (id, description, done, target_date, username) values (10002, 'Get AWS Certified by Sergio Ramos', false, CURRENT_DATE(), 'in28minutes');
-insert into todo (id, description, done, target_date, username) values (10003, 'Learn Football Tactics', false, CURRENT_DATE(), 'in28minutes');
