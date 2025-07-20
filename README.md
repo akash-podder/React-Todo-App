@@ -5,6 +5,25 @@ https://akash-podder-canva-drawing-tool.netlify.app/
 ### ReactJS AI Prompt Generator:
 https://react-js-ai-prompt-generator.netlify.app/
 
+# Create React App using `Vite`
+“vite” is a Frontend Tooling. This is the current `Recommended` way as of 2025 to create react project, as `npx create-react-app` soon will be deprecated
+
+```
+mkdir my-react-project
+cd my-react-project
+npm create vite@latest
+```
+
+project name: my-react-project (you can enter “.” to create React Project in the  Working Directory)
+Select → React
+Select → Javascript + SWC (SWC is a RUST based Bundler like Webpack is a Bundler)
+
+```
+cd /my-react-project
+npm install
+npm run dev
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
